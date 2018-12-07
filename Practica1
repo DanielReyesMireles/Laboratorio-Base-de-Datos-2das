@@ -1,0 +1,181 @@
+USE [Practica1]
+GO
+/****** Object:  Table [dbo].[Vendedor]    Script Date: 19/09/2018 10:56:29 p. m. ******/
+DROP TABLE [dbo].[Vendedor]
+GO
+/****** Object:  Table [dbo].[Proveedor]    Script Date: 19/09/2018 10:56:29 p. m. ******/
+DROP TABLE [dbo].[Proveedor]
+GO
+/****** Object:  Table [dbo].[Producto]    Script Date: 19/09/2018 10:56:29 p. m. ******/
+DROP TABLE [dbo].[Producto]
+GO
+/****** Object:  Table [dbo].[Cliente]    Script Date: 19/09/2018 10:56:29 p. m. ******/
+DROP TABLE [dbo].[Cliente]
+GO
+/****** Object:  Table [dbo].[Almacen]    Script Date: 19/09/2018 10:56:29 p. m. ******/
+DROP TABLE [dbo].[Almacen]
+GO
+USE [master]
+GO
+/****** Object:  Database [Practica1]    Script Date: 19/09/2018 10:56:29 p. m. ******/
+DROP DATABASE [Practica1]
+GO
+/****** Object:  Database [Practica1]    Script Date: 19/09/2018 10:56:29 p. m. ******/
+CREATE DATABASE [Practica1]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'Practica2', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\Practica2.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'Practica2_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\Practica2_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+ALTER DATABASE [Practica1] SET COMPATIBILITY_LEVEL = 140
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [Practica1].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [Practica1] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [Practica1] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [Practica1] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [Practica1] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [Practica1] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [Practica1] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [Practica1] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [Practica1] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [Practica1] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [Practica1] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [Practica1] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [Practica1] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [Practica1] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [Practica1] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [Practica1] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [Practica1] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [Practica1] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [Practica1] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [Practica1] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [Practica1] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [Practica1] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [Practica1] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [Practica1] SET RECOVERY FULL 
+GO
+ALTER DATABASE [Practica1] SET  MULTI_USER 
+GO
+ALTER DATABASE [Practica1] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [Practica1] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [Practica1] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [Practica1] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [Practica1] SET DELAYED_DURABILITY = DISABLED 
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'Practica1', N'ON'
+GO
+ALTER DATABASE [Practica1] SET QUERY_STORE = OFF
+GO
+USE [Practica1]
+GO
+/****** Object:  Table [dbo].[Almacen]    Script Date: 19/09/2018 10:56:30 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Almacen](
+	[idAlmacen] [int] NOT NULL,
+	[productoExistencia] [varchar](500) NOT NULL,
+ CONSTRAINT [PK_Almacen] PRIMARY KEY CLUSTERED 
+(
+	[idAlmacen] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Cliente]    Script Date: 19/09/2018 10:56:31 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Cliente](
+	[Nombre] [varchar](500) NOT NULL,
+	[RFC] [int] NOT NULL,
+	[Apellidos] [varchar](500) NOT NULL,
+	[Dirección] [varchar](500) NOT NULL,
+	[FechaNac] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_Cliente] PRIMARY KEY CLUSTERED 
+(
+	[RFC] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Producto]    Script Date: 19/09/2018 10:56:31 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Producto](
+	[Codigo] [int] NOT NULL,
+	[Nombre] [varchar](500) NOT NULL,
+	[PrecioUni] [int] NOT NULL,
+ CONSTRAINT [PK_Producto] PRIMARY KEY CLUSTERED 
+(
+	[Codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Proveedor]    Script Date: 19/09/2018 10:56:31 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Proveedor](
+	[RFC] [int] NOT NULL,
+	[Nombre] [varchar](500) NOT NULL,
+	[Dirección] [varchar](500) NOT NULL,
+ CONSTRAINT [PK_Proveedor] PRIMARY KEY CLUSTERED 
+(
+	[RFC] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Vendedor]    Script Date: 19/09/2018 10:56:31 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Vendedor](
+	[IdVendedor] [int] NOT NULL,
+	[nombreVendedor] [varchar](500) NOT NULL,
+	[apellidoVendedor] [varchar](500) NOT NULL,
+ CONSTRAINT [PK_Vendedor] PRIMARY KEY CLUSTERED 
+(
+	[IdVendedor] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+USE [master]
+GO
+ALTER DATABASE [Practica1] SET  READ_WRITE 
+GO

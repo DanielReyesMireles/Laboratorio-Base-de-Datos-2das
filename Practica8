@@ -1,0 +1,40 @@
+create trigger [dbo].[TR_DOCTOR]
+
+on [dbo].[Doctor]
+
+AFTER DELETE
+
+	AS
+
+	PRINT N'SE ELIMINO UN DOCTOR';
+
+GO
+
+create trigger [dbo].[Nombre]
+
+on [dbo].[Usuario]
+
+AFTER UPDATE
+
+	AS
+
+	IF UPDATE (id_Lector)
+
+	BEGIN
+
+	PRINT N'Se agrego un usuario';
+
+END
+
+GO
+
+
+create trigger [dbo].[id_Documento]
+
+on [dbo].[Libro_Pedido]
+
+INSTEAD of INSERT
+
+	AS
+
+	PRINT N'Se agrego un ID';

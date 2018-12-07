@@ -1,0 +1,24 @@
+	SELECT u.idUsuario,u.nombre,u.email,u.password,u.telefono,p.nombre,e.nombre FROM Usuario u
+	INNER JOIN Estatus e ON e.idEstatus = u.idEstatus
+	INNER JOIN Perfil p ON p.idPerfil = u.idPerfil
+	WHERE e.nombre <> 'BAJA'
+
+	SELECT u.nombre,u.email FROM Usuario u
+	INNER JOIN Perfil p ON p.idPerfil = u.idPerfil
+	WHERE P.nombre = 'GERENTE'
+
+	SELECT * FROM Perfil
+
+	SELECT i.nombre FROM Inventario i
+	INNER JOIN Estatus e ON e.idEstatus = i.idEstatus
+	WHERE e.nombre <> 'BAJA'
+
+	SELECT u.nombre,v.fechaCompra,dv.cantidad FROM DetalleVenta dv
+	RIGHT JOIN Ventas v ON v.idVenta = dv.idVenta
+	INNER JOIN Usuario u ON u.idUsuario = v.realizoVenta
+	WHERE MONTH(v.fechaCompra) = MONTH(GETDATE()) AND YEAR(V.fechaCompra) = YEAR(GETDATE())
+
+	SELECT i.nombre,dc.cantidad FROM DetalleCompra dc
+	INNER JOIN Inventario i ON i.idProducto = dc.idProducto
+	INNER JOIN Proveedor p ON p.idProveedor = i.idProveedor
+	WHERE p.idProveedor = 1

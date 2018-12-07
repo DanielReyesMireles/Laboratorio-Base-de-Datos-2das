@@ -1,0 +1,51 @@
+select * from Usuario
+
+select * from Libro_Pedido
+
+select * from Proveedores
+
+select Nombre 
+	from Usuario
+	where Nombre  in (select Nombre
+						from Usuario)
+
+select Nombre 
+	from Usuario
+	where Nombre  not in (select Nombre
+						from Usuario)
+
+
+
+
+select * from n_Us 
+
+select * from p_Lb
+
+select * from p_Lb	
+	where Precio > 500
+
+select * from p_Lb	
+	where Precio < 500
+
+
+select * from (select Direccion, count(Direccion) as [Direcciones]
+				from Usuario by Direccion) as DMty
+				where DMty.Direccion = Monterrey
+
+
+
+DECLARE @query nvarchar(MAX)					
+		DECLARE @nomcol nvarchar(MAX) = 'Nombre' -- 
+		SET @query = 'select Nombre as' + @nomcol + 'from Usuario'
+		print (@query)
+		EXEC (@query)
+
+create view n_Us
+	as select Nombre, Apellidos 
+	from Usuario
+
+create view p_Lb
+	as select Titulo, Precio
+	from Libro_Pedido
+
+

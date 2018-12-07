@@ -1,0 +1,227 @@
+USE [ProyectoSQL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_inventario_s]
+@opcion int = null,
+@idProducto int = null
+
+AS
+BEGIN
+IF @opcion = 1
+	BEGIN
+	SELECT * FROM Inventario 
+	WHERE idProducto = @idProducto
+	END
+	ELSE
+	BEGIN
+	SELECT * FROM Inventario 
+	END
+END
+USE [ProyectoSQL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_inventario_u]
+@idProducto int = NULL,
+@nombre VARCHAR(40) = NULL,
+@descripcion VARCHAR(70) = NULL,
+@codigo int = NULL,
+@precioUnitario DECIMAL(19,2) = NULL,
+@cantidad INT = NULL,
+@idEstatus INT = NULL,
+@idProveedor INT = NULL
+
+AS
+BEGIN
+	UPDATE Inventario SET nombre=@nombre, descripcion=@descripcion, codigo=@codigo, 
+	precioUnitario=@precioUnitario, cantidad=@cantidad, idEstatus=@idEstatus, idProveedor=@idProveedor
+	WHERE idProducto = @idProducto;
+END
+USE [ProyectoSQL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_usuario_d]
+@idUsuario int = NULL
+
+AS
+BEGIN
+	DELETE FROM Usuario WHERE idUsuario = @idUsuario;
+END
+USE [ProyectoSQL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_usuario_i]
+@opcion INT = NULL,
+@nombre VARCHAR(100) = NULL,
+@email VARCHAR(70) = NULL,
+@password VARCHAR(40) = NULL,
+@telefono VARCHAR(16) = NULL,
+@idPerfil INT = NULL,
+@idEstatus INT = NULL
+
+AS
+BEGIN
+	IF @opcion = 1
+	BEGIN
+		INSERT INTO Usuario (nombre,email,password,telefono,idPerfil,idEstatus) 
+		VALUES (@nombre,@email,@password,@telefono,@idPerfil,@idEstatus);
+	END
+END
+USE [ProyectoSQL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_usuario_s]
+@opcion int = null,
+@email VARCHAR(70) = null,
+@password VARCHAR(40) = NULL
+
+AS
+BEGIN
+	IF @opcion = 1
+	BEGIN
+	SELECT * FROM Usuario
+	END
+	ELSE IF @opcion = 2
+	BEGIN
+	SELECT * FROM Usuario WHERE email = @email AND password = @password
+	END
+	ELSE
+	BEGIN
+	SELECT * FROM Usuario
+	END
+
+END
+USE [ProyectoSQL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_usuario_u]
+@idUsuario int = NULL,
+@nombre VARCHAR(100) = NULL,
+@email VARCHAR(70) = NULL,
+@password VARCHAR(40) = NULL,
+@telefono VARCHAR(16) = NULL,
+@idPerfil INT = NULL,
+@idEstatus INT = NULL
+
+AS
+BEGIN
+	UPDATE Usuario SET nombre=@nombre, email=@email, password=@password, 
+	telefono=@telefono, idPerfil=@idPerfil, idEstatus=@idEstatus
+	WHERE idUsuario = @idUsuario;
+END
+USE [ProyectoSQL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_ventas_s]
+@idVenta int = null
+
+AS
+BEGIN
+	SELECT * FROM Ventas v 
+	INNER JOIN DetalleVenta dv ON dv.idVenta = v.idVenta
+	WHERE v.idVenta = @idVenta
+END
+USE [ProyectoSQL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_estatus_i]
+@opcion INT = NULL,
+@nombre VARCHAR(30) = NULL,
+@descripcion VARCHAR(200) = NULL
+
+AS
+BEGIN
+	IF @opcion = 1
+	BEGIN
+	INSERT INTO Estatus(nombre,descripcion) 
+	VALUES (@nombre,@descripcion)
+	END
+END
+USE [ProyectoSQL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_estatus_s]
+@opcion int = null,
+@idEstatus int = NULL
+
+AS
+BEGIN
+IF @opcion = 1
+	BEGIN
+	SELECT * FROM Estatus 
+	WHERE idEstatus = @idEstatus
+	END
+	ELSE
+	BEGIN
+	SELECT * FROM Estatus 
+	END
+END
+USE [ProyectoSQL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_estatus_u]
+@idEstatus int = NULL,
+@nombre VARCHAR(30) = NULL,
+@descripcion VARCHAR(200) = NULL
+
+AS
+BEGIN
+	UPDATE Estatus SET nombre=@nombre, descripcion=@descripcion
+	WHERE idEstatus = @idEstatus;
+END
+USE [ProyectoSQL]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_inventario_i]
+@opcion INT = NULL,
+@nombre VARCHAR(40) = NULL,
+@descripcion VARCHAR(40) = NULL, 
+@codigo INT = NULL,
+@precioUnitario DECIMAL(19,2) = NULL,
+@cantidad INT = NULL,
+@idEstatus INT = NULL,
+@idProveedor INT = NULL
+
+AS
+BEGIN
+	IF @opcion = 1
+	BEGIN
+		INSERT INTO Inventario
+		(nombre, descripcion, codigo, precioUnitario, cantidad, idEstatus, idProveedor)
+		VALUES (@nombre, @descripcion, @codigo, @precioUnitario, @cantidad, @idEstatus, @idProveedor);
+	END
+END

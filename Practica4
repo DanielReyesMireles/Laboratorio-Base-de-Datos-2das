@@ -1,0 +1,23 @@
+insert into Usuario values (1111, 'Villanueva Rodriguez', 'Ahnuar', 'Escobedo', 81560204, 'ahnuarale@hotmail.com');
+insert into Usuario values (1112, 'Reyes Mireles', 'Daniel', 'Guadalupe', 83650254, 'reyesmdaniel21@hotmail.com');
+insert into Usuario values (1113, 'Gonzales Garcia', 'Salvador', 'Guadalupe', 83695873, 'garciagsvr@hotmail.com');
+insert into Usuario values (1114, 'Vazquez Marquez', 'Edgar', 'Escobedo', 81531404, 'vmedquez@hotmail.com');
+insert into Usuario values (1115, 'Luna Ramos', 'Leslie', 'Monterrey', 82963504, 'luranamosleslie@hotmail.com');
+insert into Usuario values (1117, 'Leonel Martinez', 'Héctor', 'Escobedo', 81568547, 'hectorleomart@hotmail.com');
+insert into Usuario values (1118, 'Garza Garza', 'Pedro', 'San Nicolás', 85819204, 'ggpedrozaza@hotmail.com');
+insert into Usuario values (1119, 'Garcia Mendoza', 'José', 'Linares', 863514204, 'abcdarioale@hotmail.com');
+insert into Usuario values (1120, 'Mireles Sanchez', 'Rafael', 'Guadalupe', 81151504, 'everymorningyoushine@hotmail.com');
+insert into Usuario values (1121, 'Mercury', 'Freddie', 'Stone Town', 81560204, 'anightattheopera@hotmail.com');
+
+insert into Libro_Pedido values (111, 'The shinning', 'Stephen King', 670919, '2018-02-01', '2018-02-06', 580);
+insert into Libro_Pedido values (112, 'The Dark Tower', 'Stephen King', 670919, '2018-02-01', '2018-02-06', 600);
+insert into Libro_Pedido values (113, 'It', 'Stephen King', 670919, '2018-02-01', '2018-02-06', 580);
+insert into Libro_Pedido values (114, 'Misery', 'Stephen King', 670919, '2018-02-01', '2018-02-06', 540);
+insert into Libro_Pedido values (115, 'Gerald´s game', 'Stephen King', 670919, '2018-02-01', '2018-02-06', 300);
+insert into Libro_Pedido values (116, 'Ten little niggers', 'Agatha Christie', 670919, '2018-05-18', '2018-05-21', 580);
+insert into Libro_Pedido values (117, 'Murder on the Orient Express', 'Agatha Christie', 670919, '2018-05-18', '2018-05-21', 580);
+insert into Libro_Pedido values (118, 'Harry Potter and the prisioner of Azkaban', 'J.K. Rowling', 670919, '2018-11-20', '2018-11-26', 580);
+insert into Libro_Pedido values (119, 'Harry Potter and the half-blood prince', 'J.K. Rowling', 670919, '2018-11-20', '2018-11-26', 580);
+insert into Libro_Pedido values (120, 'A Clockwork Orange', 'Anthony Burguess', 670919, '2018-11-20', '2018-11-26', 580);
+
+insert into Proveedores values (670919, 'Marketing Solutions', 'CDMX', 81286395);
